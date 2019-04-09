@@ -19,7 +19,7 @@ public class CurrenciesRetrieverApplication {
 			retrieverBean.retrieveCurrencies();
 		/*} else if (args[0].equalsIgnoreCase("rates")) {
 			Retriever retrieverBean = context.getBean(RetrieverCurrencyConverterAPIBean.class);*/
-			retrieverBean.retrieveRates();
+			//retrieverBean.retrieveRates();
 			/*System.out.println("Result " + );
 		} else {
 			System.out.println("Unknown parameter");
