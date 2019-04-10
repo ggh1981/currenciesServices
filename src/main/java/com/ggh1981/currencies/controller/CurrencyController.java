@@ -28,21 +28,24 @@ public class CurrencyController {
 	public void retrieveRates() {
 		String RATE_USD = "USD";
 
+		List<RatesUSDBased> ratesUSDBased = new ArrayList<RatesUSDBased>();
 		List<String> twoCurrencies = new ArrayList<String>(2);
 		String currencyId = null;
 		for (Currency currency : currencyRepository.findAll()) {
 			currencyId = currency.getId();
-			if (currencyId.equalsIgnoreCase(RATE_USD)) {
+			if (!currencyId.equalsIgnoreCase(RATE_USD)) {
 				twoCurrencies.add(currency.getId());
 				if (twoCurrencies.size() >= 2) {
-					rateRepository.saveAll(CurrenciesREST.getRates(twoCurrencies));
+					ratesUSDBased.addAll(CurrenciesREST.getRates(twoCurrencies));
 					twoCurrencies = new ArrayList<String>();
 				}
 			}
 		}
-		if(!twoCurrencies.isEmpty()) {
-			rateRepository.saveAll(CurrenciesREST.getRates(twoCurrencies));
-		}
+		//TODO: Not a pair
+		/*if(!twoCurrencies.isEmpty()) {
+			ratesUSDBased.addAll(CurrenciesREST.getRates(twoCurrencies));
+		}*/
+		rateRepository.saveAll(ratesUSDBased);	
 	}
 
 }
