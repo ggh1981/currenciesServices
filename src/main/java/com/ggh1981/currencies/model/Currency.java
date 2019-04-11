@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import net.bytebuddy.implementation.auxiliary.AuxiliaryType.SignatureRelevant;
-
 @Entity
 @Table(name="CURRENCY")
 public class Currency {
