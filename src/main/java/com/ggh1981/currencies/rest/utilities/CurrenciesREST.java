@@ -55,8 +55,10 @@ public class CurrenciesREST {
 		variables.put("q", qVariable.toString());
 
 		RestTemplate restTemplate = new RestTemplate();
-		Map<String, Double> ratesMapJSON = restTemplate.getForObject(URL_RATES,
+		Map<String, String> ratesMapJSON = restTemplate.getForObject(URL_RATES,
 				Map.class, variables);
+		
+		System.out.println(ratesMapJSON);
 
 		return new RatesParser().restToEntityList(ratesMapJSON);
 	}
