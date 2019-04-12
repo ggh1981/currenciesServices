@@ -7,14 +7,27 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name="RATES_USD_BASED")
 public class RatesUSDBased {
 
+	public RatesUSDBased() {
+		super();
+	}
+
+	public RatesUSDBased(String id, Double value) {
+		super();
+		this.id = id;
+		this.value = value;
+	}
+
 	@Id
 	@Column(length = 3)
 	private String id;
-	private Float value;
+	private Double value;
+	@CreationTimestamp
 	private Date date;
 
 	public String getId() {
@@ -25,11 +38,11 @@ public class RatesUSDBased {
 		this.id = id;
 	}
 
-	public Float getValue() {
+	public Double getValue() {
 		return value;
 	}
 
-	public void setValue(Float value) {
+	public void setValue(Double value) {
 		this.value = value;
 	}
 
