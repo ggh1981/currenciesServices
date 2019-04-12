@@ -38,14 +38,16 @@ public class CurrencyController {
 				if (twoCurrencies.size() >= 2) {
 					ratesUSDBased.addAll(CurrenciesREST.getRates(twoCurrencies));
 					twoCurrencies = new ArrayList<String>();
+					break;
 				}
 			}
 		}
-		//TODO: Not a pair
-		/*if(!twoCurrencies.isEmpty()) {
-			ratesUSDBased.addAll(CurrenciesREST.getRates(twoCurrencies));
-		}*/
-		rateRepository.saveAll(ratesUSDBased);	
+		// TODO: Not a pair
+		/*
+		 * if(!twoCurrencies.isEmpty()) {
+		 * ratesUSDBased.addAll(CurrenciesREST.getRates(twoCurrencies)); }
+		 */
+		rateRepository.saveAll(ratesUSDBased);
 	}
 
 }

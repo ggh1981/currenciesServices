@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 public class Configuration {
 
 	public static String apiKey;
-	
+
 	@Value("${currency.apiKey}")
 	public void setApiKey(String apiKey) {
 		Configuration.apiKey = apiKey;
 	}
-	
+
 }

@@ -38,5 +38,5 @@ public class CurrencyJSON {
 		return "CurrenciesJSON [currencyName=" + currencyName + ", currencySymbol=" + currencySymbol + ", id=" + id
 				+ "]";
 	}
-	
+
 }

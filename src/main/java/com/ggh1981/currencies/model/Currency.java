@@ -1,17 +1,16 @@
 package com.ggh1981.currencies.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CURRENCY")
+@Table(name = "CURRENCY")
 public class Currency {
-	
+
 	public Currency() {
 		super();
 	}
@@ -24,14 +23,15 @@ public class Currency {
 	}
 
 	@Id
-	@Column(length = 3)
+	@Column(length = 3, unique = true, nullable = false)
 	private String id;
 	@Column(length = 250)
 	private String name;
 	@Column(length = 10)
 	private String symbol;
-	@OneToMany(mappedBy = "id")
-	private List<RatesUSDBased> rates;
+	@OneToOne
+	@JoinColumn(name = "id")
+	private RatesUSDBased rateUsdBased;
 
 	public String getId() {
 		return id;
@@ -56,4 +56,13 @@ public class Currency {
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
 	}
+
+	public RatesUSDBased getRateUsdBased() {
+		return rateUsdBased;
+	}
+
+	public void setRateUsdBased(RatesUSDBased rateUsdBased) {
+		this.rateUsdBased = rateUsdBased;
+	}
+
 }
