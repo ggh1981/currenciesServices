@@ -4,13 +4,17 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
-@Table(name="RATES_USD_BASED")
+@Table(name = "RATES_USD_BASED")
 public class RatesUSDBased {
 
 	public RatesUSDBased() {
@@ -24,11 +28,14 @@ public class RatesUSDBased {
 	}
 
 	@Id
-	@Column(length = 3)
+	@Column(length = 3, unique = true, nullable = false)
 	private String id;
 	private Double value;
 	@CreationTimestamp
 	private Date date;
+	@JsonBackReference
+	@OneToOne(mappedBy = "rateUsdBased", fetch = FetchType.LAZY)
+	private Currency currency;
 
 	public String getId() {
 		return id;
@@ -52,6 +59,14 @@ public class RatesUSDBased {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public Currency getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(Currency currency) {
+		this.currency = currency;
 	}
 
 }

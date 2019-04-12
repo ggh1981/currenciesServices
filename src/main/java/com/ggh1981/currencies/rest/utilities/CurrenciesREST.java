@@ -15,15 +15,16 @@ import com.ggh1981.currencies.rest.parsers.CurrencyParser;
 import com.ggh1981.currencies.rest.parsers.RatesParser;
 
 public class CurrenciesREST {
-			
+
 	public static List<Currency> getCurrencies() {
 
-		final String URL_CURRENCIES =
-				"https://free.currencyconverterapi.com/api/v6/currencies?apiKey={apiKey}";
+		final String URL_CURRENCIES = "https://free.currencyconverterapi.com/api/v6/currencies?apiKey={apiKey}";
 		@SuppressWarnings("serial")
-		Map<String, String> variables = new HashMap<String, String>(){{
-			put("apiKey", apiKey);
-		}};
+		Map<String, String> variables = new HashMap<String, String>() {
+			{
+				put("apiKey", apiKey);
+			}
+		};
 
 		RestTemplate restTemplate = new RestTemplate();
 		ResultsJSON resultsJSON = restTemplate.getForObject(URL_CURRENCIES, ResultsJSON.class, variables);
@@ -33,17 +34,18 @@ public class CurrenciesREST {
 
 	public static List<RatesUSDBased> getRates(List<String> currenciesId) {
 
-		final String URL_RATES =
-				"https://free.currencyconverterapi.com/api/v6/convert?compact={compact}&apiKey={apiKey}&q={q}";
-		//It is used the prefix because the value will be more accurate
+		final String URL_RATES = "https://free.currencyconverterapi.com/api/v6/convert?compact={compact}&apiKey={apiKey}&q={q}";
+		// It is used the prefix because the value will be more accurate
 		final String USD_PREFIX = "USD_";
 		final String EMPTY_STRING = "";
 		String currentSeparator = ",";
 		@SuppressWarnings("serial")
-		Map<String, String> variables = new HashMap<String, String>(){{
-			put("compact", "ultra");
-			put("apiKey", apiKey);
-		}};
+		Map<String, String> variables = new HashMap<String, String>() {
+			{
+				put("compact", "ultra");
+				put("apiKey", apiKey);
+			}
+		};
 
 		StringBuilder qVariable = new StringBuilder();
 
@@ -51,13 +53,12 @@ public class CurrenciesREST {
 			qVariable.append(USD_PREFIX).append(currencyId).append(currentSeparator);
 			currentSeparator = EMPTY_STRING;
 		}
-		
+
 		variables.put("q", qVariable.toString());
 
 		RestTemplate restTemplate = new RestTemplate();
-		Map<String, Object> ratesMapJSON = restTemplate.getForObject(URL_RATES,
-				Map.class, variables);
-		
+		Map<String, Object> ratesMapJSON = restTemplate.getForObject(URL_RATES, Map.class, variables);
+
 		System.out.println(ratesMapJSON);
 
 		return new RatesParser().restToEntityList(ratesMapJSON);

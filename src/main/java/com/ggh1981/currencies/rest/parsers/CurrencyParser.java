@@ -8,7 +8,7 @@ import com.ggh1981.currencies.model.Currency;
 import com.ggh1981.currencies.rest.jsontemplates.CurrencyJSON;
 import com.ggh1981.currencies.rest.jsontemplates.ResultsJSON;
 
-public class CurrencyParser implements ParserBase<Currency, ResultsJSON>{
+public class CurrencyParser implements ParserBase<Currency, ResultsJSON> {
 
 	@Override
 	public List<Currency> restToEntityList(ResultsJSON json) {
