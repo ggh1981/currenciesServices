@@ -38,7 +38,6 @@ public class CurrencyController {
 				if (twoCurrencies.size() >= 2) {
 					ratesUSDBased.addAll(CurrenciesREST.getRates(twoCurrencies));
 					twoCurrencies = new ArrayList<String>();
-					break;
 				}
 			}
 		}
